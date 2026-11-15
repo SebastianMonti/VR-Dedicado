@@ -60,6 +60,7 @@ public class PuntajeManager : MonoBehaviour
         puntajeTotal = 0;
         dardosTirados = 0;
         ActualizarUI();
+        Dardo_pegajoso.EliminarTodos();
     }
 
     private void ActualizarUI()
