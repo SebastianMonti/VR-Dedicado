@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Proyecto/Scenes/CozyTavern.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Samples/XR Interaction Toolkit/2.6.5/Starter Assets/DemoScene.unity
+    guid: 319dafa5c80f29f428dc1e0d03f04177
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 52f75ca15498f194d93cc592faac2d5b, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: b3d7971ab534e1241bd05961ee79dfdf, type: 2}
