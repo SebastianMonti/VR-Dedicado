@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+
 public class PuntajeManager : MonoBehaviour
 {
     public static PuntajeManager Instance { get; private set; }
@@ -12,6 +14,8 @@ public class PuntajeManager : MonoBehaviour
     public int puntajeRonda = 0;
     public int dardosTirados = 0;
     public int mejorTiro = 0;
+
+    private const string CLAVE_RONDA = "PuntajeManager_NumeroRonda";
 
     [Header("Configuración")]
     [SerializeField] private int tirosPorRonda = 3;
@@ -35,7 +39,12 @@ public class PuntajeManager : MonoBehaviour
 
     private void Start()
     {
+        // Recuperar la última ronda guardada.
+        numeroRonda = PlayerPrefs.GetInt(CLAVE_RONDA, 1);
+
         ActualizarUI();
+
+        Debug.Log("Partida reanudada en la ronda " + numeroRonda);
     }
 
     // Registra un tiro válido.
@@ -97,6 +106,10 @@ public class PuntajeManager : MonoBehaviour
         dardosTirados = 0;
         mejorTiro = 0;
         tirosRonda.Clear();
+
+        // Guardar el progreso.
+        PlayerPrefs.SetInt(CLAVE_RONDA, numeroRonda);
+        PlayerPrefs.Save();
 
         ActualizarUI();
     }
@@ -181,5 +194,17 @@ public class PuntajeManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F10))
             ReiniciarJuego();
     }
-   
+
+    [ContextMenu("Pruebas/Reiniciar número de ronda")]
+    public void ReiniciarNumeroRonda()
+    {
+        numeroRonda = 0;
+
+        PlayerPrefs.SetInt(CLAVE_RONDA, numeroRonda);
+        PlayerPrefs.Save();
+
+        ActualizarUI();
+
+        Debug.Log("Número de ronda reiniciado a 0.");
+    }
 }
